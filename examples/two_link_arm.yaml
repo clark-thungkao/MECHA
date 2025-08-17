@@ -1,0 +1,26 @@
+project: two_link_arm
+units: metric
+parts:
+  - type: plate
+    name: base_plate
+    width: 120
+    height: 80
+    thickness: 6
+    holes:
+      - {x: 20, y: 20, d: 5}
+      - {x: 100, y: 20, d: 5}
+  - type: shaft
+    name: shoulder_shaft
+    diameter: 12
+    length: 60
+  - type: link
+    name: link1
+    length: 180
+    width: 25
+    thickness: 6
+assemblies:
+  - name: arm_assy
+    items:
+      - {part: base_plate, transform: [0,0,0, 0,0,0]}
+      - {part: shoulder_shaft, transform: [0,0,6, 0,0,0]}
+      - {part: link1, transform: [0,0,12, 0,0,0]}
