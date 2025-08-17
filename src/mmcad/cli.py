@@ -11,20 +11,32 @@ def _make_part(p):
 
 def build(spec_path, outdir="build"):
     os.makedirs(outdir, exist_ok=True)
-    spec = yaml.safe_load(open(spec_path, "r"))
+    with open(spec_path, "r", encoding="utf-8") as fh:
+        spec = yaml.safe_load(fh)
+
     # parts
     for p in spec.get("parts", []):
         m = _make_part(p)
         cq.exporters.export(m, f"{outdir}/{p['name']}.step")
         cq.exporters.export(m, f"{outdir}/{p['name']}.stl")
-    # assemblies (CSV for now; URDF later)
-    with open(f"{outdir}/assembly.csv","w") as f:
-        f.write("name,part,tx,ty,tz,rx,ry,rz\n")
-        for a in spec.get("assemblies", []):
-            for item in a["items"]:
-                tx,ty,tz,rx,ry,rz = item["transform"]
-                f.write(f"{a['name']},{item['part']},{tx},{ty},{tz},{rx},{ry},{rz}\n")
-    print(f"Done. Files in {outdir}/")
+
+    # assemblies (always write a CSV)
+    asm_path = os.path.join(outdir, "assembly.csv")
+    with open(asm_path, "w", encoding="utf-8") as f:
+        f.write("assembly,part,tx,ty,tz,rx,ry,rz\n")
+
+        assemblies = spec.get("assemblies", [])
+        if not assemblies:
+            # fallback: identity transforms for each part
+            for p in spec.get("parts", []):
+                f.write(f"default,{p['name']},0,0,0,0,0,0\n")
+        else:
+            for a in assemblies:
+                for item in a["items"]:
+                    tx, ty, tz, rx, ry, rz = item["transform"]
+                    f.write(f"{a['name']},{item['part']},{tx},{ty},{tz},{rx},{ry},{rz}\n")
+
+    print(f"Done. Files in {outdir}/ (STEP, STL, and assembly.csv)")
 
 def main():
     ap = argparse.ArgumentParser(description="MechaCoop CLI")
