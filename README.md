@@ -22,6 +22,7 @@ python -m roboforge build examples/bracket_demo.yaml --out build/
 # - build/assembly.step   (import into Fusion/SolidWorks/Inventor)
 # - build/BOM.xlsx        (parts list)
 Why RoboForgeAI?
+```
 
 ⚡ Spec → CAD: go from a structured spec to editable CAD in one command.
 
@@ -44,6 +45,7 @@ Rule-based/AI helpers for quick mechanism variants (WIP).
 Headless mode for CI runners.
 
 Example (minimal spec)
+```bash
 name: "demo_bracket_assembly"
 units: mm
 parts:
@@ -63,15 +65,10 @@ outputs:
     path: build/assembly.step
   - format: bom
     path: build/BOM.xlsx
-
-
-Run it:
-
-python -m roboforge build examples/bracket_demo.yaml --out build/
+```
 
 Installation
-# Optional: install as an editable package
-pip install -e .
+tba
 
 
 Prerequisites
@@ -83,6 +80,7 @@ FreeCAD 0.21+ (for .FCStd export)
 (Optional) CAD tool that imports STEP (Fusion 360, SolidWorks, Inventor)
 
 Using the CLI
+```bash
 # Build from a spec file
 roboforge build path/to/spec.yaml --out build/
 
@@ -91,9 +89,7 @@ roboforge validate path/to/spec.yaml
 
 # List available part builders / parameters
 roboforge builders
-
-
-If roboforge isn’t on your PATH, use python -m roboforge ....
+```
 
 Multi-CAD Export
 
@@ -102,6 +98,7 @@ FreeCAD: native .FCStd keeps parametrics and constraints.
 STEP: neutral .step for broad compatibility (no parametrics).
 
 Project Structure
+```bash
 roboforgeai/
   roboforge/
     cli.py              # CLI entry points
@@ -113,40 +110,29 @@ examples/
   bracket_demo.yaml
 media/
   demo.gif
-
+```
 Windows/macOS/Linux notes (FreeCAD CLI)
-
+```bash
 Windows: ensure FreeCADCmd.exe is on PATH, e.g.
 
 set "PATH=C:\Program Files\FreeCAD 0.21\bin;%PATH%"
 FreeCADCmd --version
-
-
-macOS:
-
-/Applications/FreeCAD.app/Contents/MacOS/FreeCADCmd --version
-
-
+```
 Linux:
 
 freecadcmd --version
 
 
 If RoboForgeAI can’t find FreeCAD automatically, set an env var before building:
-
+```bash
 # Point to your FreeCAD command
 # Windows (PowerShell):
 $env:ROBOFORGE_FREECAD_CMD="C:\Program Files\FreeCAD 0.21\bin\FreeCADCmd.exe"
 # macOS/Linux (bash/zsh):
 export ROBOFORGE_FREECAD_CMD="/Applications/FreeCAD.app/Contents/MacOS/FreeCADCmd"
-
+```
 Troubleshooting
 
-“freecadcmd/FreeCADCmd not found” → Add FreeCAD to PATH or set ROBOFORGE_FREECAD_CMD (see above).
-
-No STEP output → verify exporters/step.py is enabled and that your spec includes a step output.
-
-Empty BOM/XLSX → ensure each part exposes parameters and material fields in the spec.
 
 Roadmap
 
