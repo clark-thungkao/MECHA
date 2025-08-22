@@ -1,4 +1,4 @@
-# RoboForgeAI
+## RoboForgeAI
 > **From spec to robot CAD in minutes.** Define mechanisms in YAML/JSON and generate parametric parts & assemblies with exports for FreeCAD (`.FCStd`) and neutral STEP (Fusion 360, SolidWorks, Inventor).
 
 [![CI]
@@ -18,12 +18,10 @@ pip install -r requirements.txt
 python -m roboforge build examples/bracket_demo.yaml --out build/
 
 # Open outputs
-# - build/assembly.FCStd  (FreeCAD native)
-# - build/assembly.step   (import into Fusion/SolidWorks/Inventor)
-# - build/BOM.xlsx        (parts list)
-Why RoboForgeAI?
-```
+TBA
 
+```
+Why RoboForgeAI?
 ⚡ Spec → CAD: go from a structured spec to editable CAD in one command.
 
 🧩 Parametric: parts & assemblies are generated with parameters you can tweak.
@@ -32,7 +30,7 @@ Why RoboForgeAI?
 
 🛠️ Multi-CAD friendly: FreeCAD for native parametrics; STEP for everything else.
 
-Features
+#Features
 
 YAML/JSON → parts, subassemblies, constraints, BOM.
 
@@ -44,7 +42,7 @@ Rule-based/AI helpers for quick mechanism variants (WIP).
 
 Headless mode for CI runners.
 
-Example (minimal spec)
+# Example (minimal spec)
 ```bash
 name: "demo_bracket_assembly"
 units: mm
@@ -67,11 +65,11 @@ outputs:
     path: build/BOM.xlsx
 ```
 
-Installation
+# Installation
 tba
 
 
-Prerequisites
+#Prerequisites
 
 Python 3.10+
 
@@ -79,7 +77,7 @@ FreeCAD 0.21+ (for .FCStd export)
 
 (Optional) CAD tool that imports STEP (Fusion 360, SolidWorks, Inventor)
 
-Using the CLI
+#Using the CLI
 ```bash
 # Build from a spec file
 roboforge build path/to/spec.yaml --out build/
@@ -91,13 +89,13 @@ roboforge validate path/to/spec.yaml
 roboforge builders
 ```
 
-Multi-CAD Export
+#Multi-CAD Export
 
 FreeCAD: native .FCStd keeps parametrics and constraints.
 
 STEP: neutral .step for broad compatibility (no parametrics).
 
-Project Structure
+#Project Structure
 ```bash
 roboforgeai/
   roboforge/
@@ -111,19 +109,19 @@ examples/
 media/
   demo.gif
 ```
-Windows/macOS/Linux notes (FreeCAD CLI)
+#Windows/macOS/Linux notes (FreeCAD CLI)
 ```bash
 Windows: ensure FreeCADCmd.exe is on PATH, e.g.
 
 set "PATH=C:\Program Files\FreeCAD 0.21\bin;%PATH%"
 FreeCADCmd --version
 ```
-Linux:
+#Linux:
 
 freecadcmd --version
 
 
-If RoboForgeAI can’t find FreeCAD automatically, set an env var before building:
+#If RoboForgeAI can’t find FreeCAD automatically, set an env var before building:
 ```bash
 # Point to your FreeCAD command
 # Windows (PowerShell):
@@ -131,33 +129,23 @@ $env:ROBOFORGE_FREECAD_CMD="C:\Program Files\FreeCAD 0.21\bin\FreeCADCmd.exe"
 # macOS/Linux (bash/zsh):
 export ROBOFORGE_FREECAD_CMD="/Applications/FreeCAD.app/Contents/MacOS/FreeCADCmd"
 ```
-Troubleshooting
+#Troubleshooting
+Tba
 
-
-Roadmap
+#Roadmap
+First draft:
 
 Constraint graph visualizer (roboforge viz)
-
 Direct Fusion 360 API export (parametric timeline)
-
 Mechanism templates (linkages, belt drives, gear trains)
-
 Tolerancing & fastener libraries
-
 AI-assisted design suggestions from requirements text
 
-Contributing
+#Contributing
 
 PRs welcome! Please:
+See CONTRIBUTING.md and docs/dev_setup.md. *tba
 
-Open an issue to discuss scope.
-
-Follow black + ruff for style.
-
-Add/extend tests for new builders/exporters.
-
-See CONTRIBUTING.md and docs/dev_setup.md.
-
-Citation
+#Citation
 
 If this project helps your research, please cite it. Add a CITATION.cff at repo root for GitHub to generate citation metadata.
