@@ -1,6 +1,6 @@
 ## RoboForgeAI
 > **From spec to robot CAD in minutes.** Define mechanisms in YAML/JSON and generate parametric parts & assemblies with exports for FreeCAD (`.FCStd`) and neutral STEP (Fusion 360, SolidWorks, Inventor).
-To be further integrate with AI
+To be updated with AI
 > 
 [![CI]
 [![License]
@@ -22,14 +22,14 @@ python -m roboforge build examples/bracket_demo.yaml --out build/
 TBA
 
 ```
-Why RoboForgeAI?
-⚡ Spec → CAD: go from a structured spec to editable CAD in one command.
+First Idea of RoboForgeAI
+Spec → CAD: go from a structured spec to editable CAD in one command.
 
-🧩 Parametric: parts & assemblies are generated with parameters you can tweak.
+Parametric: parts & assemblies are generated with parameters you can tweak.
 
-🔁 Repeatable: deterministic builds—great for design reviews & CI.
+Repeatable: deterministic builds—great for design reviews & CI.
 
-🛠️ Multi-CAD friendly: FreeCAD for native parametrics; STEP for everything else.
+Multi-CAD friendly: FreeCAD for native parametrics; STEP for everything else.
 
 #Features
 
@@ -68,27 +68,6 @@ outputs:
 
 # Installation
 tba
-
-
-#Prerequisites
-
-Python 3.10+
-
-FreeCAD 0.21+ (for .FCStd export)
-
-(Optional) CAD tool that imports STEP (Fusion 360, SolidWorks, Inventor)
-
-#Using the CLI
-```bash
-# Build from a spec file
-roboforge build path/to/spec.yaml --out build/
-
-# Validate a spec without building
-roboforge validate path/to/spec.yaml
-
-# List available part builders / parameters
-roboforge builders
-```
 
 #Multi-CAD Export
 
@@ -133,8 +112,8 @@ export ROBOFORGE_FREECAD_CMD="/Applications/FreeCAD.app/Contents/MacOS/FreeCADCm
 #Troubleshooting
 Tba
 
-#Roadmap
-First draft:
+#First Roadmap (will be updated)
+
 
 Constraint graph visualizer (roboforge viz)
 Direct Fusion 360 API export (parametric timeline)
